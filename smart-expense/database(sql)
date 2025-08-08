@@ -1,0 +1,145 @@
+
+-- Balance Table
+CREATE TABLE balance (
+    balance_id SERIAL PRIMARY KEY,
+    user_id INT,
+    current_amount NUMERIC,
+    total_savings NUMERIC
+);
+
+-- Users Table
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    password VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(20),
+    type VARCHAR(20), -- 'individual' or 'business'
+    balance_id INT,
+    FOREIGN KEY (balance_id) REFERENCES balance(balance_id)
+);
+
+-- Individual User Subtype
+CREATE TABLE user_individual (
+    user_id INT PRIMARY KEY,
+    profession VARCHAR(100),
+    age INT,
+    gender VARCHAR(10),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Business User Subtype
+CREATE TABLE user_business (
+    user_id INT PRIMARY KEY,
+    business VARCHAR(100),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Expense Table
+CREATE TABLE expense (
+    expense_id SERIAL PRIMARY KEY,
+    user_id INT,
+    amount NUMERIC,
+    date DATE,
+    description TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Expense Bills Table
+CREATE TABLE expense_bills (
+    expense_id INT PRIMARY KEY,
+    bill_category VARCHAR(100),
+    update_date DATE,
+    FOREIGN KEY (expense_id) REFERENCES expense(expense_id)
+);
+
+-- Expense Purchases Table
+CREATE TABLE expense_purchases (
+    expense_id INT PRIMARY KEY,
+    purchase_category VARCHAR(100),
+    FOREIGN KEY (expense_id) REFERENCES expense(expense_id)
+);
+
+-- Income Table
+CREATE TABLE income (
+    income_id SERIAL PRIMARY KEY,
+    user_id INT,
+    amount NUMERIC,
+    date DATE,
+    description TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Income Regular Table
+CREATE TABLE income_regular (
+    income_id INT PRIMARY KEY,
+    income_category VARCHAR(100),
+    update_date DATE,
+    FOREIGN KEY (income_id) REFERENCES income(income_id)
+);
+
+-- Income Irregular Table
+CREATE TABLE income_irregular (
+    income_id INT PRIMARY KEY,
+    income_category VARCHAR(100),
+    FOREIGN KEY (income_id) REFERENCES income(income_id)
+);
+
+-- Loan Table
+CREATE TABLE loan (
+    loan_id SERIAL PRIMARY KEY,
+    user_id INT,
+    amount NUMERIC,
+    date DATE,
+    description TEXT,
+    loan_category VARCHAR(100),
+    bank_name VARCHAR(100),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Savings Table
+CREATE TABLE savings (
+    savings_id SERIAL PRIMARY KEY,
+    user_id INT,
+    amount NUMERIC,
+    date DATE,
+    description TEXT,
+    savings_category VARCHAR(100),
+    bank_name VARCHAR(100),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Budget Plan Table
+CREATE TABLE budget_plan (
+    plan_id SERIAL PRIMARY KEY,
+    user_id INT,
+    target_amount NUMERIC,
+    name VARCHAR(100),
+    description TEXT,
+    savings_id INT,
+    target_date DATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (savings_id) REFERENCES savings(savings_id)
+);
+
+-- Saved Report Table
+CREATE TABLE saved_report (
+    report_id SERIAL PRIMARY KEY,
+    user_id INT,
+    start_date DATE,
+    end_date DATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Admin Table
+CREATE TABLE admin (
+    admin_id SERIAL PRIMARY KEY,
+    email VARCHAR(100),
+    password VARCHAR(100)
+);
+
+-- Notification Table
+CREATE TABLE notification (
+    notification_id SERIAL PRIMARY KEY,
+    message TEXT
+);
