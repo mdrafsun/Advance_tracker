@@ -1,0 +1,23 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+npm-debug.log*
+
+# Node / React
+node_modules/
+dist/
+build/
+coverage/
+.env
+.env.local
+.env.*.local
+
+# Local runtime DB file (do NOT commit)
+smart-expense/backend/data/db.json
+
+# Archives
+*.zip
+*.7z
+*.rar
