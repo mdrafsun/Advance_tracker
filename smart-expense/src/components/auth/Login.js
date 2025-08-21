@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { actionTypes } from '../../context/AppContext';
-import { mockUsers } from '../../data/mockData';
 
 const Login = () => {
   const { dispatch } = useApp();
@@ -56,23 +55,54 @@ const Login = () => {
     
     setLoading(true);
     
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Find user by email and role
-      const user = mockUsers.find(u => 
-        u.email === formData.email && u.role === formData.role
-      );
-      
-      if (user) {
-        dispatch({
-          type: actionTypes.LOGIN,
-          payload: user
-        });
-        navigate('/dashboard');
+          try {
+        // For demo purposes, allow login with any valid email format
+        // In production, this would validate against a real backend
+        if (formData.email && formData.password) {
+          // Generate unique user ID based on email hash
+          const emailHash = btoa(formData.email).replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
+          const uniqueUserId = `u_${emailHash}`;
+          
+          // Create a user object for our system
+          let user = {
+            id: uniqueUserId,
+            userId: uniqueUserId,
+            name: formData.email.split('@')[0] || 'User',
+            email: formData.email,
+            role: formData.role,
+            phone: '+1234567890'
+          };
+          
+          // Check if user exists in database, if not create them
+          try {
+            const response = await fetch('http://localhost:3001/api/users', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(user)
+            });
+            
+            if (response.ok) {
+              const savedUser = await response.json();
+              user = { ...user, ...savedUser };
+            }
+            // If user already exists (409), that's fine - we can still login
+          } catch (error) {
+            console.warn('Could not save user to database:', error);
+          }
+          
+          dispatch({
+            type: actionTypes.LOGIN,
+            payload: user
+          });
+          
+          // Save to localStorage
+          localStorage.setItem('smartexpense_user', JSON.stringify(user));
+          
+          navigate('/dashboard');
       } else {
-        setErrors({ submit: 'Invalid credentials or role selection' });
+        setErrors({ submit: 'Please fill in all fields' });
       }
     } catch (error) {
       setErrors({ submit: 'Login failed. Please try again.' });

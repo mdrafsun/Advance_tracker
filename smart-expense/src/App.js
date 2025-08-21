@@ -1,143 +1,74 @@
+// smart-expense/src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AppProvider, useApp } from './context/AppContext';
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { useApp } from './context/AppContext';
 
-// Auth Components
+import DashboardLayout from './components/common/DashboardLayout';
+import Dashboard from './components/dashboard/Dashboard';
+
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import ForgotPassword from './components/auth/ForgotPassword';
 
-// Layout Components
-import DashboardLayout from './components/common/DashboardLayout';
-
-// Page Components
-import Dashboard from './components/dashboard/Dashboard';
-import Income from './components/income/Income';
 import Expenses from './components/expenses/Expenses';
-import Budget from './components/budget/Budget';
+import Income from './components/income/Income';
 import Savings from './components/savings/Savings';
+import Loans from './components/loans/Loans';
+import Budget from './components/budget/Budget';
 import Reports from './components/reports/Reports';
 import Notifications from './components/notifications/Notifications';
-import Admin from './components/admin/Admin';
 import Profile from './components/profile/Profile';
+import Admin from './components/admin/Admin';
 
-// Protected Route Component
-const ProtectedRoute = ({ children }) => {
+const RequireAuth = () => {
   const { state } = useApp();
-  return state.isAuthenticated ? children : <Navigate to="/login" replace />;
+  if (!state.initialized) {
+    // Splash while context boots (prevents “UI gone”)
+    return <div style={{padding: 24, fontFamily: 'sans-serif'}}>Loading…</div>;
+  }
+  if (!state.isAuthenticated) return <Navigate to="/login" replace />;
+  return <Outlet />;
 };
 
-// Public Route Component (redirect to dashboard if already authenticated)
-const PublicRoute = ({ children }) => {
+const RootRedirect = () => {
   const { state } = useApp();
-  return !state.isAuthenticated ? children : <Navigate to="/dashboard" replace />;
+  if (!state.initialized) return <div style={{padding: 24, fontFamily: 'sans-serif'}}>Loading…</div>;
+  return state.isAuthenticated ? <Navigate to="/dashboard" replace /> : <Navigate to="/login" replace />;
 };
 
-// App Routes Component
-const AppRoutes = () => {
+const App = () => {
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route path="/login" element={
-        <PublicRoute>
-          <Login />
-        </PublicRoute>
-      } />
-      <Route path="/signup" element={
-        <PublicRoute>
-          <Signup />
-        </PublicRoute>
-      } />
-      <Route path="/forgot-password" element={
-        <PublicRoute>
-          <ForgotPassword />
-        </PublicRoute>
-      } />
+    <BrowserRouter>
+      <Routes>
+        {/* Root decides based on auth */}
+        <Route path="/" element={<RootRedirect />} />
 
-      {/* Protected Routes */}
-      <Route path="/dashboard" element={
-        <ProtectedRoute>
-          <DashboardLayout>
-            <Dashboard />
-          </DashboardLayout>
-        </ProtectedRoute>
-      } />
-      <Route path="/income" element={
-        <ProtectedRoute>
-          <DashboardLayout>
-            <Income />
-          </DashboardLayout>
-        </ProtectedRoute>
-      } />
-      <Route path="/expenses" element={
-        <ProtectedRoute>
-          <DashboardLayout>
-            <Expenses />
-          </DashboardLayout>
-        </ProtectedRoute>
-      } />
-      <Route path="/budget" element={
-        <ProtectedRoute>
-          <DashboardLayout>
-            <Budget />
-          </DashboardLayout>
-        </ProtectedRoute>
-      } />
-      <Route path="/savings" element={
-        <ProtectedRoute>
-          <DashboardLayout>
-            <Savings />
-          </DashboardLayout>
-        </ProtectedRoute>
-      } />
-      <Route path="/reports" element={
-        <ProtectedRoute>
-          <DashboardLayout>
-            <Reports />
-          </DashboardLayout>
-        </ProtectedRoute>
-      } />
-      <Route path="/notifications" element={
-        <ProtectedRoute>
-          <DashboardLayout>
-            <Notifications />
-          </DashboardLayout>
-        </ProtectedRoute>
-      } />
-      <Route path="/admin" element={
-        <ProtectedRoute>
-          <DashboardLayout>
-            <Admin />
-          </DashboardLayout>
-        </ProtectedRoute>
-      } />
-      <Route path="/profile" element={
-        <ProtectedRoute>
-          <DashboardLayout>
-            <Profile />
-          </DashboardLayout>
-        </ProtectedRoute>
-      } />
+        {/* Public */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
-      {/* Redirect root to dashboard if authenticated, otherwise to login */}
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
-      
-      {/* Catch all route */}
-      <Route path="*" element={<Navigate to="/dashboard" replace />} />
-    </Routes>
+        {/* Protected */}
+        <Route element={<RequireAuth />}>
+          <Route element={<DashboardLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/income" element={<Income />} />
+            <Route path="/expenses" element={<Expenses />} />
+            <Route path="/savings" element={<Savings />} />
+            <Route path="/loans" element={<Loans />} />
+            <Route path="/budget" element={<Budget />} />
+            <Route path="/reports" element={<Reports />} />
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/admin" element={<Admin />} />
+          </Route>
+        </Route>
+
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
-
-function App() {
-  return (
-    <AppProvider>
-      <Router>
-        <div className="App">
-          <AppRoutes />
-        </div>
-      </Router>
-    </AppProvider>
-  );
-}
 
 export default App;

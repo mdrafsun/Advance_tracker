@@ -1,10 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
-import { mockUsers } from '../../data/mockData';
 
 const Admin = () => {
   const { state } = useApp();
   const [activeTab, setActiveTab] = useState('users');
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // Fetch real users from the database
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        setLoading(true);
+        // Get users from the users endpoint
+        const response = await fetch('http://localhost:3001/api/users');
+        if (response.ok) {
+          const data = await response.json();
+          if (Array.isArray(data)) {
+            setUsers(data);
+          } else {
+            setUsers([]);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch users:', error);
+        setUsers([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (state.user?.role === 'admin') {
+      fetchUsers();
+    }
+  }, [state.user?.role]);
 
   if (state.user?.role !== 'admin') {
     return (
@@ -59,42 +88,47 @@ const Admin = () => {
         <div className="card overflow-hidden">
           <h3 className="text-lg font-medium text-gray-900 mb-4">Registered Users</h3>
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    User
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Email
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Role
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Phone
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {mockUsers.map((user) => (
+            {loading ? (
+              <div className="p-6 text-center text-gray-500">Loading users...</div>
+            ) : users.length === 0 ? (
+              <div className="p-6 text-center text-gray-500">No users found</div>
+            ) : (
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      User
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Email
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Role
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Phone
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {users.map((user) => (
                   <tr key={user.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <img
-                          className="h-10 w-10 rounded-full"
-                          src={user.avatar}
-                          alt={user.name}
-                        />
+                        <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                          <span className="text-white font-medium text-sm">
+                            {user.name?.charAt(0)?.toUpperCase() || 'U'}
+                          </span>
+                        </div>
                         <div className="ml-4">
                           <div className="text-sm font-medium text-gray-900">
-                            {user.name}
+                            {user.name || 'Unknown'}
                           </div>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {user.email}
+                      {user.email || 'No email'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full capitalize ${
@@ -114,6 +148,7 @@ const Admin = () => {
                 ))}
               </tbody>
             </table>
+            )}
           </div>
         </div>
       )}

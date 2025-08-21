@@ -1,6 +1,7 @@
-import React from 'react';
+// smart-expense/src/components/dashboard/Dashboard.js
+import React, { useMemo } from 'react';
 import { useApp } from '../../context/AppContext';
-import { mockChartData } from '../../data/mockData';
+import { useNavigate } from 'react-router-dom';
 import {
   AreaChart,
   Area,
@@ -26,7 +27,54 @@ import {
 } from '@heroicons/react/24/outline';
 
 const Dashboard = () => {
-  const { state, totalIncome, totalExpenses, totalSavings, totalLoans, netWorth } = useApp();
+  // removed netWorth from here
+  const { state, totalIncome, totalExpenses, totalSavings, totalLoans } = useApp();
+  const navigate = useNavigate();
+
+  // Generate real chart data from user's actual data
+  const chartData = useMemo(() => {
+    // Weekly expenses chart data (last 7 days)
+    const weeklyExpenses = [];
+    const today = new Date();
+    for (let i = 6; i >= 0; i--) {
+      const date = new Date(today);
+      date.setDate(date.getDate() - i);
+      const dateStr = date.toISOString().split('T')[0];
+      const dayExpenses = state.expenses.filter(exp => exp.date === dateStr);
+      const total = dayExpenses.reduce((sum, exp) => sum + (Number(exp.amount) || 0), 0);
+      weeklyExpenses.push({
+        day: date.toLocaleDateString('en-US', { weekday: 'short' }),
+        amount: total
+      });
+    }
+
+    // Monthly income trend (last 6 months)
+    const monthlyIncome = [];
+    for (let i = 5; i >= 0; i--) {
+      const date = new Date(today);
+      date.setMonth(date.getMonth() - i);
+      const monthStr = date.toISOString().split('T')[0].substring(0, 7);
+      const monthIncome = state.income.filter(inc => inc.date?.startsWith(monthStr));
+      const total = monthIncome.reduce((sum, inc) => sum + (Number(inc.amount) || 0), 0);
+      monthlyIncome.push({
+        month: date.toLocaleDateString('en-US', { month: 'short' }),
+        amount: total
+      });
+    }
+
+    // Expenses by category (real data)
+    const categoryMap = {};
+    state.expenses.forEach(exp => {
+      const category = exp.category || 'Other';
+      categoryMap[category] = (categoryMap[category] || 0) + (Number(exp.amount) || 0);
+    });
+    const expensesByCategory = Object.entries(categoryMap).map(([category, amount]) => ({
+      category,
+      amount
+    })).sort((a, b) => b.amount - a.amount);
+
+    return { weeklyExpenses, monthlyIncome, expensesByCategory };
+  }, [state.expenses, state.income]);
 
   const overviewCards = [
     {
@@ -71,7 +119,7 @@ const Dashboard = () => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD'
-    }).format(amount);
+    }).format(Number.isFinite(amount) ? amount : 0);
   };
 
   const CustomTooltip = ({ active, payload, label }) => {
@@ -127,9 +175,7 @@ const Dashboard = () => {
                   ) : (
                     <ArrowTrendingDownIcon className="h-4 w-4 text-red-500 mr-1" />
                   )}
-                  <span className={`text-sm ${
-                    card.trend === 'up' ? 'text-green-600' : 'text-red-600'
-                  }`}>
+                  <span className={`text-sm ${card.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}>
                     {card.change}
                   </span>
                   <span className="text-sm text-gray-500 ml-1">from last month</span>
@@ -140,26 +186,13 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* Net Worth Card */}
-      <div className="card bg-gradient-to-r from-secondary-50 to-primary-50 border-2 border-primary-200">
-        <div className="text-center">
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Net Worth</h3>
-          <p className={`text-4xl font-bold ${netWorth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-            {formatCurrency(netWorth)}
-          </p>
-          <p className="text-sm text-gray-600 mt-2">
-            Your total assets minus liabilities
-          </p>
-        </div>
-      </div>
-
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Weekly Expenses Chart */}
         <div className="card">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Weekly Expenses</h3>
           <ResponsiveContainer width="100%" height={300}>
-            <AreaChart data={mockChartData.weeklyExpenses}>
+            <AreaChart data={chartData.weeklyExpenses}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="day" />
               <YAxis />
@@ -179,7 +212,7 @@ const Dashboard = () => {
         <div className="card">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Monthly Income Trend</h3>
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={mockChartData.monthlyIncome}>
+            <BarChart data={chartData.monthlyIncome}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" />
               <YAxis />
@@ -197,7 +230,7 @@ const Dashboard = () => {
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
-                data={mockChartData.expensesByCategory}
+                data={chartData.expensesByCategory}
                 cx="50%"
                 cy="50%"
                 labelLine={false}
@@ -206,7 +239,7 @@ const Dashboard = () => {
                 fill="#8884d8"
                 dataKey="amount"
               >
-                {mockChartData.expensesByCategory.map((entry, index) => (
+                {chartData.expensesByCategory.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
@@ -216,7 +249,7 @@ const Dashboard = () => {
           
           {/* Legend */}
           <div className="flex flex-col justify-center space-y-2">
-            {mockChartData.expensesByCategory.map((entry, index) => (
+            {chartData.expensesByCategory.map((entry, index) => (
               <div key={entry.category} className="flex items-center">
                 <div 
                   className="w-4 h-4 rounded-full mr-3" 
@@ -237,28 +270,28 @@ const Dashboard = () => {
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <button 
-            onClick={() => window.location.href = '/expenses'}
+            onClick={() => navigate('/expenses')}
             className="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors text-center"
           >
             <CreditCardIcon className="h-8 w-8 text-gray-400 mx-auto mb-2" />
             <span className="text-sm font-medium text-gray-700">Add Expense</span>
           </button>
           <button 
-            onClick={() => window.location.href = '/income'}
+            onClick={() => navigate('/income')}
             className="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-500 hover:bg-green-50 transition-colors text-center"
           >
             <BanknotesIcon className="h-8 w-8 text-gray-400 mx-auto mb-2" />
             <span className="text-sm font-medium text-gray-700">Add Income</span>
           </button>
           <button 
-            onClick={() => window.location.href = '/budget'}
+            onClick={() => navigate('/budget')}
             className="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-center"
           >
             <BuildingLibraryIcon className="h-8 w-8 text-gray-400 mx-auto mb-2" />
             <span className="text-sm font-medium text-gray-700">Set Budget</span>
           </button>
           <button 
-            onClick={() => window.location.href = '/reports'}
+            onClick={() => navigate('/reports')}
             className="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-colors text-center"
           >
             <ArrowTrendingUpIcon className="h-8 w-8 text-gray-400 mx-auto mb-2" />

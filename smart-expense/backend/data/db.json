@@ -1,0 +1,817 @@
+{
+  "users": [
+    {
+      "userId": "u1",
+      "name": "Test User",
+      "role": "user"
+    },
+    {
+      "id": "u_YWRtaW5A",
+      "userId": "u_YWRtaW5A",
+      "name": "admin",
+      "email": "admin@smartexpense.com",
+      "phone": "+1234567890",
+      "role": "admin",
+      "createdAt": "2025-08-21T09:42:35.512Z"
+    },
+    {
+      "id": "u_ZmFyaGFu",
+      "userId": "u_ZmFyaGFu",
+      "name": "farhan",
+      "email": "farhan@gamil.com",
+      "phone": "+1234567890",
+      "role": "individual",
+      "createdAt": "2025-08-21T09:43:21.674Z"
+    }
+  ],
+  "income": [
+    {
+      "incomeId": "inc_618b9a86-317a-4f38-91ab-6cc89a272d2d",
+      "userId": "u1",
+      "amount": 1000,
+      "date": "2025-08-15",
+      "description": "Salary",
+      "category": "job",
+      "type": "regular",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "incomeId": "inc_fd6fc7d7-d1bb-4363-864c-5d10b06370aa",
+      "userId": "u1",
+      "amount": 500,
+      "date": "2025-08-20",
+      "description": "Test Income",
+      "category": "test",
+      "type": "regular",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "incomeId": "inc_831f7808-f657-4f6d-b33f-16197f405d8e",
+      "userId": "u1",
+      "amount": 750,
+      "date": "2025-08-20",
+      "description": "Test De-duplication",
+      "category": "test",
+      "type": "regular",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "incomeId": "inc_1c515ccb-243e-450b-8594-69f7cc5b2ca5",
+      "userId": "u1",
+      "amount": 1200,
+      "date": "2025-08-20",
+      "description": "Final Test",
+      "category": "test",
+      "type": "regular",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "incomeId": "inc_0d2c9959-07db-4869-87a4-b717b64dc294",
+      "userId": "u1",
+      "amount": 900,
+      "date": "2025-08-20",
+      "description": "No Duplicate Test",
+      "category": "test",
+      "type": "regular",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "incomeId": "inc_c92103b5-dcea-46bd-bcf7-3fc14131c072",
+      "userId": "u1",
+      "amount": 2500,
+      "date": "2025-08-20",
+      "description": "Production Test",
+      "category": "salary",
+      "type": "regular",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "incomeId": "inc_c1544325-d615-4d65-b561-367e066dc50a",
+      "userId": "u1",
+      "amount": 2500,
+      "date": "2025-08-20",
+      "description": "Salary Bonus",
+      "category": "salary",
+      "type": "regular",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "incomeId": "inc_f41d7d59-aacb-46c9-8d22-b3bb0ae58ce9",
+      "userId": "u1",
+      "amount": 1800,
+      "date": "2025-08-20",
+      "description": "Freelance Work",
+      "category": "freelance",
+      "type": "regular",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "incomeId": "inc_d6606098-53a5-41e0-bec8-ae7e50138494",
+      "userId": "u1",
+      "amount": 1200,
+      "date": "2025-08-20",
+      "description": "Localhost Test",
+      "category": "test",
+      "type": "regular",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "incomeId": "inc_xwpj67uczc-3pbdgyqeb5l",
+      "userId": 1,
+      "amount": 2000,
+      "date": "2025-08-21",
+      "description": "test",
+      "category": "salary",
+      "type": "regular",
+      "updateDate": "2025-08-21",
+      "createdAt": "2025-08-21T07:37:21.907Z"
+    },
+    {
+      "incomeId": "inc_8c674286-eb71-49e5-8afa-18f46868bd63",
+      "userId": "u1",
+      "amount": 5000,
+      "date": "2025-08-21",
+      "description": "tttt",
+      "category": "bonus",
+      "type": "regular",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "incomeId": "inc_3341d289-7381-40cc-9b39-d6bfabc808f4",
+      "userId": "u1",
+      "amount": 3000,
+      "date": "2025-08-21",
+      "description": "Data Persistence Test",
+      "category": "test",
+      "type": "regular",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "incomeId": "inc_3ff942a3-2c31-4c3f-b62b-26bb2221d4f2",
+      "userId": "u1",
+      "amount": 2000,
+      "date": "2025-08-21",
+      "description": "test",
+      "category": "salary",
+      "type": "regular",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "incomeId": "inc_3afa5ac6-99d5-4a18-9a93-563b91f8c9a0",
+      "userId": "u1",
+      "amount": 2500,
+      "date": "2025-08-21",
+      "description": "Local Machine Test",
+      "category": "test",
+      "type": "regular",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "incomeId": "inc_87423852-9062-4dd6-bcfd-7a2a32365b5d",
+      "userId": "u1",
+      "amount": 1000,
+      "date": "2025-08-21",
+      "description": "Fix Test",
+      "category": "test",
+      "type": "regular",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "incomeId": "inc_5fb257db-7d1a-4116-b036-9fbb1caeed50",
+      "userId": "u1",
+      "amount": 8888,
+      "date": "2025-08-21",
+      "description": "ooooooo",
+      "category": "bonus",
+      "type": "regular",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "incomeId": "inc_d50b8be1-e150-4777-928b-ed68dbcb8b88",
+      "userId": "u1",
+      "amount": 99999,
+      "date": "2025-08-21",
+      "description": "eeee",
+      "category": "Salary",
+      "type": "regular",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "incomeId": "inc_ea1eebc5-82bb-4e84-bb36-6b0d64a0402c",
+      "userId": "u1",
+      "amount": 10000,
+      "date": "2025-08-21",
+      "description": "j",
+      "category": "Salary",
+      "type": "regular",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "incomeId": "inc_72a00a45-6a43-48e2-aeb8-f3751440fe9f",
+      "userId": "u2",
+      "amount": 5000,
+      "date": "2025-08-21",
+      "description": "Test User 2 Income",
+      "category": "test",
+      "type": "regular",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "incomeId": "inc_e0eb35c6-3c6f-4df9-ad26-c9bfbd2470f2",
+      "userId": "u_cmF5aGFu",
+      "amount": 10000,
+      "date": "2025-08-21",
+      "description": "ooooooo",
+      "category": "Salary",
+      "type": "regular",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "incomeId": "inc_9c1e5d52-e747-4abc-9ec3-6308bb6c4963",
+      "userId": "u_az8o6f2idof-d0rudpdz4pl",
+      "amount": 2000,
+      "date": "2025-08-21",
+      "description": "New User Salary",
+      "category": "job",
+      "type": "regular",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "incomeId": "inc_126968b4-75f9-4887-81d0-ee23a2ec5f70",
+      "userId": "u_ZmFyaGFu",
+      "amount": 55555,
+      "date": "2025-08-21",
+      "description": "test",
+      "category": "Salary",
+      "type": "regular",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "incomeId": "inc_23201b62-d88f-4fb5-b3d6-50ecec841e87",
+      "userId": "u_am9obkBl",
+      "amount": 200000,
+      "date": "2025-08-21",
+      "description": "Agro farm",
+      "category": "Salary",
+      "type": "regular",
+      "updateDate": "2025-08-21"
+    }
+  ],
+  "expenses": [
+    {
+      "expenseId": "exp_b9e2ba6b-0f3c-4ed1-9a82-505edaf79d75",
+      "userId": "u1",
+      "amount": 200,
+      "date": "2025-08-15",
+      "description": "Groceries",
+      "category": "food",
+      "kind": "purchase",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "expenseId": "exp_9ce69c60-c091-4871-baba-48d8824d4f0b",
+      "userId": "u1",
+      "amount": 100,
+      "date": "2025-08-20",
+      "description": "Test Expense",
+      "category": "test",
+      "kind": "purchase",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "expenseId": "exp_acf81a36-24f9-4b29-8d4d-b67c4f8f635a",
+      "userId": "u1",
+      "amount": 150,
+      "date": "2025-08-20",
+      "description": "Test De-duplication 2",
+      "category": "test",
+      "kind": "purchase",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "expenseId": "exp_25c6422d-9e3d-41be-86a4-94297981e1f7",
+      "userId": "u1",
+      "amount": 75,
+      "date": "2025-08-20",
+      "description": "Final No Duplicate Test",
+      "category": "test",
+      "kind": "purchase",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "expenseId": "exp_243d6a0f-cef4-43d3-96d3-b59cbde85c8c",
+      "userId": "u1",
+      "amount": 180,
+      "date": "2025-08-20",
+      "description": "Production Expense Test",
+      "category": "groceries",
+      "kind": "purchase",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "expenseId": "exp_185c9d40-4539-4251-9583-e7c6adf7555d",
+      "userId": "u1",
+      "amount": 150,
+      "date": "2025-08-20",
+      "description": "Grocery Shopping",
+      "category": "groceries",
+      "kind": "purchase",
+      "updateDate": "2025-08-20"
+    },
+    {
+      "expenseId": "exp_204b6d71-9a03-4aad-bbca-e5bf40d80459",
+      "userId": "u1",
+      "amount": 150,
+      "date": "2025-08-21",
+      "description": "System Test",
+      "category": "test",
+      "kind": "purchase",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "expenseId": "exp_84c88452-b8cb-45c0-8ead-5d18f1ee3e65",
+      "userId": "u2",
+      "amount": 200,
+      "date": "2025-08-21",
+      "description": "Test User 2 Expense",
+      "category": "test",
+      "kind": "purchase",
+      "updateDate": "2025-08-21"
+    },
+    {
+      "expenseId": "exp_e2bf0add-1e9f-4156-ab80-aa28cb4cb097",
+      "userId": "u_cmF5aGFu",
+      "amount": 200,
+      "date": "2025-08-21",
+      "description": "j",
+      "category": "Rent",
+      "kind": "purchase",
+      "updateDate": "2025-08-21"
+    }
+  ],
+  "savings": [
+    {
+      "savingsId": "sav_8437232e-6555-4729-a508-440001c6a9c6",
+      "userId": "u1",
+      "amount": 300,
+      "date": "2025-08-15",
+      "description": "Emergency Fund",
+      "savingsCategory": "",
+      "bankName": ""
+    },
+    {
+      "savingsId": "sav_2dce3cb0-4731-401d-bec2-2c8db9060805",
+      "userId": "u1",
+      "amount": 250,
+      "date": "2025-08-20",
+      "description": "Test Savings",
+      "savingsCategory": "",
+      "bankName": ""
+    },
+    {
+      "savingsId": "sav_b195db6c-2452-455d-8508-69cea82d048d",
+      "userId": "u1",
+      "amount": 500,
+      "date": "2025-08-20",
+      "description": "Production Savings Test",
+      "savingsCategory": "",
+      "bankName": ""
+    },
+    {
+      "savingsId": "sav_f9fcc9a5-4ef0-4f60-b2da-bcff98743c64",
+      "userId": "u1",
+      "amount": 800,
+      "date": "2025-08-20",
+      "description": "Emergency Fund",
+      "savingsCategory": "",
+      "bankName": ""
+    },
+    {
+      "savingsId": "sav_215acbc6-2e9e-4a77-a851-54cfa5962b5c",
+      "userId": "u1",
+      "amount": 500,
+      "date": "2025-08-21",
+      "description": "System Test",
+      "savingsCategory": "",
+      "bankName": ""
+    }
+  ],
+  "loans": [
+    {
+      "loanId": "loan_67def6fb-ae6b-40a3-a7fa-9ee1d51447f1",
+      "userId": "u1",
+      "amount": 1500,
+      "date": "2025-08-15",
+      "description": "Phone Loan",
+      "loanCategory": "",
+      "bankName": ""
+    },
+    {
+      "loanId": "loan_d132ca1d-988c-46c4-8b47-561a686e1be2",
+      "userId": "u1",
+      "amount": 800,
+      "date": "2025-08-20",
+      "description": "Test Loan",
+      "loanCategory": "",
+      "bankName": ""
+    },
+    {
+      "loanId": "loan_ff6c2e5f-5235-4dda-b359-4a254071a362",
+      "userId": "u1",
+      "amount": 2000,
+      "date": "2025-08-20",
+      "description": "Production Loan Test",
+      "loanCategory": "",
+      "bankName": ""
+    },
+    {
+      "loanId": "loan_7be921de-2193-443f-9d8f-6803bd14bbec",
+      "userId": "u1",
+      "amount": 3000,
+      "date": "2025-08-20",
+      "description": "Car Loan",
+      "loanCategory": "",
+      "bankName": ""
+    },
+    {
+      "loanId": "loan_4f7d8857-2a03-4469-86cf-a7821470974b",
+      "userId": "u1",
+      "amount": 5555,
+      "date": "2025-08-21",
+      "description": "",
+      "loanCategory": "",
+      "bankName": ""
+    },
+    {
+      "loanId": "loan_f00e56aa-1a71-4849-9cc8-375354b4b9c3",
+      "userId": "u1",
+      "amount": 2000,
+      "date": "2025-08-21",
+      "description": "System Test",
+      "loanCategory": "",
+      "bankName": ""
+    }
+  ],
+  "notifications": [
+    {
+      "notificationId": "ntf_75f088f9-c288-4e56-90db-97142f19353a",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 1000",
+      "at": "2025-08-20T22:40:31",
+      "refId": "inc_618b9a86-317a-4f38-91ab-6cc89a272d2d"
+    },
+    {
+      "notificationId": "ntf_f4894bf8-ce64-4977-b02e-8f7c491318a4",
+      "userId": "u1",
+      "event": "expense:added",
+      "message": "Expense recorded: 200",
+      "at": "2025-08-20T22:40:31",
+      "refId": "exp_b9e2ba6b-0f3c-4ed1-9a82-505edaf79d75"
+    },
+    {
+      "notificationId": "ntf_9b7e2c77-727a-47a8-92cd-ebe11cc64270",
+      "userId": "u1",
+      "event": "savings:added",
+      "message": "Savings recorded: 300",
+      "at": "2025-08-20T22:40:31",
+      "refId": "sav_8437232e-6555-4729-a508-440001c6a9c6"
+    },
+    {
+      "notificationId": "ntf_036e625d-3d7c-4f05-9321-03495c1db28e",
+      "userId": "u1",
+      "event": "loan:added",
+      "message": "Loan recorded: 1500",
+      "at": "2025-08-20T22:40:31",
+      "refId": "loan_67def6fb-ae6b-40a3-a7fa-9ee1d51447f1"
+    },
+    {
+      "notificationId": "ntf_79de07b7-e3bc-41f6-8899-425f6258b466",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 500",
+      "at": "2025-08-20T22:42:28",
+      "refId": "inc_fd6fc7d7-d1bb-4363-864c-5d10b06370aa"
+    },
+    {
+      "notificationId": "ntf_63c25ba6-a900-4b43-a5c6-68520cc8e4ed",
+      "userId": "u1",
+      "event": "expense:added",
+      "message": "Expense recorded: 100",
+      "at": "2025-08-20T22:42:39",
+      "refId": "exp_9ce69c60-c091-4871-baba-48d8824d4f0b"
+    },
+    {
+      "notificationId": "ntf_06cf6308-ff34-4040-8160-f73de65cabcf",
+      "userId": "u1",
+      "event": "savings:added",
+      "message": "Savings recorded: 250",
+      "at": "2025-08-20T22:42:45",
+      "refId": "sav_2dce3cb0-4731-401d-bec2-2c8db9060805"
+    },
+    {
+      "notificationId": "ntf_ff38d331-4347-4d91-b683-00fcc51028ec",
+      "userId": "u1",
+      "event": "loan:added",
+      "message": "Loan recorded: 800",
+      "at": "2025-08-20T22:42:50",
+      "refId": "loan_d132ca1d-988c-46c4-8b47-561a686e1be2"
+    },
+    {
+      "notificationId": "ntf_y0x7qak9se-c6i61v3xs8j",
+      "userId": "u1",
+      "event": "loan:added",
+      "message": "Loaned 800 for test",
+      "at": "2025-08-20T16:42:50.789Z",
+      "read": false
+    },
+    {
+      "notificationId": "ntf_b85ced16-8b81-4152-95d7-21865a966570",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 750",
+      "at": "2025-08-20T22:55:13",
+      "refId": "inc_831f7808-f657-4f6d-b33f-16197f405d8e"
+    },
+    {
+      "notificationId": "ntf_k8jv84lvcfs-ebiy0bq6ra",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Added 750 to test",
+      "at": "2025-08-20T16:55:13.417Z",
+      "read": false
+    },
+    {
+      "notificationId": "ntf_e8b49d49-cbe6-4f31-be05-b7c1ebaf9709",
+      "userId": "u1",
+      "event": "expense:added",
+      "message": "Expense recorded: 150",
+      "at": "2025-08-20T22:55:53",
+      "refId": "exp_acf81a36-24f9-4b29-8d4d-b67c4f8f635a"
+    },
+    {
+      "notificationId": "ntf_f40e0913-f101-45a4-ac51-a5dfdb9811e1",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 1200",
+      "at": "2025-08-20T22:56:34",
+      "refId": "inc_1c515ccb-243e-450b-8594-69f7cc5b2ca5"
+    },
+    {
+      "notificationId": "ntf_t8fokd9n9dj-knl52d8hg9",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Added 1200 to test",
+      "at": "2025-08-20T16:56:34.971Z",
+      "read": false
+    },
+    {
+      "notificationId": "ntf_a30e7c89-fbda-4082-830c-61505c8c9035",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 900",
+      "at": "2025-08-20T22:57:54",
+      "refId": "inc_0d2c9959-07db-4869-87a4-b717b64dc294"
+    },
+    {
+      "notificationId": "ntf_51ad7a82-84df-4943-ad0a-81daeafe66f4",
+      "userId": "u1",
+      "event": "expense:added",
+      "message": "Expense recorded: 75",
+      "at": "2025-08-20T22:58:10",
+      "refId": "exp_25c6422d-9e3d-41be-86a4-94297981e1f7"
+    },
+    {
+      "notificationId": "ntf_250b7e74-10b3-456a-badc-683550c3c78c",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 2500",
+      "at": "2025-08-20T22:58:25",
+      "refId": "inc_c92103b5-dcea-46bd-bcf7-3fc14131c072"
+    },
+    {
+      "notificationId": "ntf_c70b9200-df76-4218-89ea-299e48ebb460",
+      "userId": "u1",
+      "event": "expense:added",
+      "message": "Expense recorded: 180",
+      "at": "2025-08-20T22:58:43",
+      "refId": "exp_243d6a0f-cef4-43d3-96d3-b59cbde85c8c"
+    },
+    {
+      "notificationId": "ntf_afd3d492-f824-421f-96eb-a8659dc8e9bc",
+      "userId": "u1",
+      "event": "savings:added",
+      "message": "Savings recorded: 500",
+      "at": "2025-08-20T22:58:52",
+      "refId": "sav_b195db6c-2452-455d-8508-69cea82d048d"
+    },
+    {
+      "notificationId": "ntf_135c6a07-0ea6-45a8-b412-48c65934d2e7",
+      "userId": "u1",
+      "event": "loan:added",
+      "message": "Loan recorded: 2000",
+      "at": "2025-08-20T22:58:58",
+      "refId": "loan_ff6c2e5f-5235-4dda-b359-4a254071a362"
+    },
+    {
+      "notificationId": "ntf_02219466-d17c-455d-a58f-a8a521f85b79",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 2500",
+      "at": "2025-08-20T23:00:53",
+      "refId": "inc_c1544325-d615-4d65-b561-367e066dc50a"
+    },
+    {
+      "notificationId": "ntf_4ffe943a-3901-4117-bc0b-8bca7d3dd969",
+      "userId": "u1",
+      "event": "expense:added",
+      "message": "Expense recorded: 150",
+      "at": "2025-08-20T23:01:00",
+      "refId": "exp_185c9d40-4539-4251-9583-e7c6adf7555d"
+    },
+    {
+      "notificationId": "ntf_65c5aa28-40ed-48cf-8ea7-438dda893786",
+      "userId": "u1",
+      "event": "savings:added",
+      "message": "Savings recorded: 800",
+      "at": "2025-08-20T23:01:07",
+      "refId": "sav_f9fcc9a5-4ef0-4f60-b2da-bcff98743c64"
+    },
+    {
+      "notificationId": "ntf_d7f0e3b9-fe30-4bb0-99e7-325f3f75d8ec",
+      "userId": "u1",
+      "event": "loan:added",
+      "message": "Loan recorded: 3000",
+      "at": "2025-08-20T23:01:15",
+      "refId": "loan_7be921de-2193-443f-9d8f-6803bd14bbec"
+    },
+    {
+      "notificationId": "ntf_f036e039-95c1-4b1f-a20c-b29207fc59ee",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 1800",
+      "at": "2025-08-20T23:03:18",
+      "refId": "inc_f41d7d59-aacb-46c9-8d22-b3bb0ae58ce9"
+    },
+    {
+      "notificationId": "ntf_d3eb6cd9-2aad-462a-9cac-1e2c13f066f8",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 1200",
+      "at": "2025-08-20T23:09:42",
+      "refId": "inc_d6606098-53a5-41e0-bec8-ae7e50138494"
+    },
+    {
+      "notificationId": "ntf_e135cfba-f438-4bb9-b8fb-57b91a1b09ea",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 5000",
+      "at": "2025-08-21T13:47:11",
+      "refId": "inc_8c674286-eb71-49e5-8afa-18f46868bd63"
+    },
+    {
+      "notificationId": "ntf_c4f409b9-17e7-4328-a07b-aa3190f4f2c4",
+      "userId": "u1",
+      "event": "loan:added",
+      "message": "Loan recorded: 5555",
+      "at": "2025-08-21T13:52:17",
+      "refId": "loan_4f7d8857-2a03-4469-86cf-a7821470974b"
+    },
+    {
+      "notificationId": "ntf_3a2da87a-86bb-49a2-8792-fb552257e9c6",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 3000",
+      "at": "2025-08-21T13:54:23",
+      "refId": "inc_3341d289-7381-40cc-9b39-d6bfabc808f4"
+    },
+    {
+      "notificationId": "ntf_eef116ee-41d5-4fcc-b147-b60626e25b97",
+      "userId": "u1",
+      "event": "expense:added",
+      "message": "Expense recorded: 150",
+      "at": "2025-08-21T14:13:14",
+      "refId": "exp_204b6d71-9a03-4aad-bbca-e5bf40d80459"
+    },
+    {
+      "notificationId": "ntf_c0cd9ac6-83a8-428d-af8a-84c2c3d21c36",
+      "userId": "u1",
+      "event": "savings:added",
+      "message": "Savings recorded: 500",
+      "at": "2025-08-21T14:16:19",
+      "refId": "sav_215acbc6-2e9e-4a77-a851-54cfa5962b5c"
+    },
+    {
+      "notificationId": "ntf_562ec9ff-3bf2-4ff6-9302-caf45e5b02c6",
+      "userId": "u1",
+      "event": "loan:added",
+      "message": "Loan recorded: 2000",
+      "at": "2025-08-21T14:24:52",
+      "refId": "loan_f00e56aa-1a71-4849-9cc8-375354b4b9c3"
+    },
+    {
+      "notificationId": "ntf_bbf6ff15-f577-40c5-a3cb-3ffd734060ec",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 2000",
+      "at": "2025-08-21T14:31:47",
+      "refId": "inc_3ff942a3-2c31-4c3f-b62b-26bb2221d4f2"
+    },
+    {
+      "notificationId": "ntf_5524e12a-9fa4-4ac2-a2d3-5cb0439f6f5a",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 2500",
+      "at": "2025-08-21T14:33:36",
+      "refId": "inc_3afa5ac6-99d5-4a18-9a93-563b91f8c9a0"
+    },
+    {
+      "notificationId": "ntf_f46f7f24-cd6d-4ade-9b3c-78cbabb201cc",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 1000",
+      "at": "2025-08-21T14:40:06",
+      "refId": "inc_87423852-9062-4dd6-bcfd-7a2a32365b5d"
+    },
+    {
+      "notificationId": "ntf_4b8288e4-4463-4a88-9e09-af015a0226e9",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 8888",
+      "at": "2025-08-21T14:41:39",
+      "refId": "inc_5fb257db-7d1a-4116-b036-9fbb1caeed50"
+    },
+    {
+      "notificationId": "ntf_2b944f26-147a-49c3-89e7-6334b7428f5a",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 99999",
+      "at": "2025-08-21T14:42:59",
+      "refId": "inc_d50b8be1-e150-4777-928b-ed68dbcb8b88"
+    },
+    {
+      "notificationId": "ntf_b1d71d06-e078-40e0-b02d-8f965329b8f3",
+      "userId": "u1",
+      "event": "income:added",
+      "message": "Income recorded: 10000",
+      "at": "2025-08-21T14:52:51",
+      "refId": "inc_ea1eebc5-82bb-4e84-bb36-6b0d64a0402c"
+    },
+    {
+      "notificationId": "ntf_252b4221-016f-4357-b9ea-ed24d8dcfb51",
+      "userId": "u2",
+      "event": "income:added",
+      "message": "Income recorded: 5000",
+      "at": "2025-08-21T15:05:35",
+      "refId": "inc_72a00a45-6a43-48e2-aeb8-f3751440fe9f"
+    },
+    {
+      "notificationId": "ntf_9a7b2c3d-7a1f-4ac6-863f-2172eb3892ba",
+      "userId": "u2",
+      "event": "expense:added",
+      "message": "Expense recorded: 200",
+      "at": "2025-08-21T15:05:36",
+      "refId": "exp_84c88452-b8cb-45c0-8ead-5d18f1ee3e65"
+    },
+    {
+      "notificationId": "ntf_9ee47d08-11eb-4af7-a026-7c4d2c23e6e1",
+      "userId": "u_cmF5aGFu",
+      "event": "income:added",
+      "message": "Income recorded: 10000",
+      "at": "2025-08-21T15:20:55",
+      "refId": "inc_e0eb35c6-3c6f-4df9-ad26-c9bfbd2470f2"
+    },
+    {
+      "notificationId": "ntf_fd37f41b-4729-441b-a14a-35b497f8f719",
+      "userId": "u_cmF5aGFu",
+      "event": "expense:added",
+      "message": "Expense recorded: 200",
+      "at": "2025-08-21T15:21:20",
+      "refId": "exp_e2bf0add-1e9f-4156-ab80-aa28cb4cb097"
+    },
+    {
+      "notificationId": "ntf_c267e4a2-623c-484b-8be1-51711d59e5f4",
+      "userId": "u_az8o6f2idof-d0rudpdz4pl",
+      "event": "income:added",
+      "message": "Income recorded: 2000",
+      "at": "2025-08-21T15:39:52",
+      "refId": "inc_9c1e5d52-e747-4abc-9ec3-6308bb6c4963"
+    },
+    {
+      "notificationId": "ntf_5af2ae7a-c0c7-4a95-a1cd-c760260159c5",
+      "userId": "u_ZmFyaGFu",
+      "event": "income:added",
+      "message": "Income recorded: 55555",
+      "at": "2025-08-21T15:42:15",
+      "refId": "inc_126968b4-75f9-4887-81d0-ee23a2ec5f70"
+    },
+    {
+      "notificationId": "ntf_a90fa664-3829-428a-9cc4-9055cb2ebe41",
+      "userId": "u_am9obkBl",
+      "event": "income:added",
+      "message": "Income recorded: 200000",
+      "at": "2025-08-21T16:12:09",
+      "refId": "inc_23201b62-d88f-4fb5-b3d6-50ecec841e87"
+    }
+  ]
+}

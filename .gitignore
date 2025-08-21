@@ -1,0 +1,12 @@
+
+# Node/React
+node_modules/
+smart-expense/node_modules/
+smart-expense/backend/node_modules/
+build/
+dist/
+coverage/
+.env
+.env.*
+.vscode/
+

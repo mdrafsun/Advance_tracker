@@ -82,12 +82,14 @@ const Signup = () => {
     setLoading(true);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Generate unique user ID based on email hash
+      const emailHash = btoa(formData.email).replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
+      const uniqueUserId = `u_${emailHash}`;
       
-      // Create new user
+      // Create new user object
       const newUser = {
-        id: Date.now(),
+        id: uniqueUserId,
+        userId: uniqueUserId,
         name: formData.name.trim(),
         email: formData.email,
         phone: formData.phone,
@@ -95,10 +97,32 @@ const Signup = () => {
         avatar: `https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face`
       };
       
+      // Save user to backend database
+      const response = await fetch('http://localhost:3001/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUser)
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to create user');
+      }
+      
+      const savedUser = await response.json();
+      
+      // Update user object with backend response
+      const finalUser = { ...newUser, ...savedUser };
+      
       dispatch({
         type: actionTypes.LOGIN,
-        payload: newUser
+        payload: finalUser
       });
+      
+      // Save to localStorage
+      localStorage.setItem('smartexpense_user', JSON.stringify(finalUser));
       
       navigate('/dashboard');
     } catch (error) {
