@@ -1,4 +1,5 @@
 // UserObserver.js — Concrete observer that reacts per user
+
 const db = require('../singleton/Database');
 
 function newId(prefix) {
@@ -65,5 +66,6 @@ class UserObserver {
     }
   }
 }
+
 
 module.exports = UserObserver;
