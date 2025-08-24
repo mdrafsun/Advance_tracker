@@ -1,4 +1,5 @@
 // GlobalUserObserver.js — Concrete observer that reacts to all users
+
 const db = require('../singleton/Database');
 
 function newId(prefix) {
